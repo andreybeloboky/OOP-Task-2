@@ -5,6 +5,11 @@ public class Matrix {
     int[][] matrixOne;
     int[][] matrixTwo;
 
+    /**
+     *
+     * @param matrixOne - the first matrix user;
+     * @param matrixTwo - the second matrix user;
+     */
     public Matrix(int[][] matrixOne, int[][] matrixTwo) {
         this.matrixOne = matrixOne;
         this.matrixTwo = matrixTwo;
