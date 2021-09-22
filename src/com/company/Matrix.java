@@ -6,7 +6,6 @@ public class Matrix {
     int[][] matrixTwo;
 
     /**
-     *
      * @param matrixOne - the first matrix user;
      * @param matrixTwo - the second matrix user;
      */
