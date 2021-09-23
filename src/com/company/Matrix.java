@@ -2,8 +2,8 @@ package com.company;
 
 public class Matrix {
 
-    int[][] matrixOne;
-    int[][] matrixTwo;
+    private final int[][] matrixOne;
+    private final int[][] matrixTwo;
 
     /**
      * @param matrixOne - the first matrix user;
