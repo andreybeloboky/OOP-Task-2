@@ -6,44 +6,94 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter number of columns");
-        int numberOfColumns = scanner.nextInt();
-        System.out.println("Enter number of line");
-        int numberOfLine = scanner.nextInt();
-        System.out.println("Matrix one");
-        int[][] matrixOne = matrix(numberOfLine, numberOfColumns);
-        System.out.println("Matrix two");
-        int[][] matrixTwo = matrix(numberOfLine, numberOfColumns);
-        Matrix matrix = new Matrix(matrixOne, matrixTwo);
-        System.out.println("Choose function 1 - summa matrixs, 2 - multiplication of number");
-        int function = scanner.nextInt();
-        switch (function) {
-            case 1 -> {
-                int[][] matrixResult = matrix.calculatorMatrix();
-                matrix.consoleOutput(matrixResult);
+        int[][] firstMatrix = {{1, 2, 3}, {1, 3, 3}};
+        int[][] secondMatrix = {{1, 1, 1}, {1, 1, 1}};
+        Matrix matrixOne = new Matrix(firstMatrix);
+        Matrix matrixTwo = new Matrix(secondMatrix);
+        System.out.println("Enter operation");
+        System.out.println("1 - addition matrix, 2 - myltiply on number, 3 - find max number, 4 - find min number");
+        System.out.println("5 - comparison on equal between two matrices, 6 - degree matrix");
+        System.out.println("7 - transpose matrix, 8 - multiply matrices, another number - leave from program");
+        int index = scanner.nextInt();
+        switch (index) {
+            case 1: {
+                matrixOne.add(matrixTwo);
+                int[][] result = matrixOne.toArray();
+                for (int i = 0; i < result.length; i++) {
+                    for (int j = 0; j < result[0].length; j++) {
+                        System.out.print(result[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+                break;
             }
-            case 2 -> {
-                int number = scanner.nextInt();
-                int[][] matrixMultiplication = matrix.multiplication(number);
-                matrix.consoleOutput(matrixMultiplication);
+            case 2: {
+                int number = 2;
+                matrixOne.myltiplyOnNumber(number);
+                int[][] result = matrixOne.toArray();
+                for (int i = 0; i < result.length; i++) {
+                    for (int j = 0; j < result[0].length; j++) {
+                        System.out.print(result[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+                break;
+            }
+            case 3: {
+                int max = matrixOne.findMaxNumber();
+                System.out.println(max + " max");
+                break;
+            }
+            case 4: {
+                int min = matrixOne.findMinNumber();
+                System.out.println(min + " min");
+                break;
+            }
+            case 5: {
+                boolean equel = matrixOne.isEqual(matrixTwo);
+                System.out.println(equel);
+                break;
+            }
+            case 6: {
+                System.out.println("Enter degree");
+                int degree = scanner.nextInt();
+                matrixOne.erectToDegree(degree);
+                int[][] matrixDegree = matrixOne.toArray();
+                for (int i = 0; i < matrixDegree.length; i++) {
+                    for (int j = 0; j < matrixDegree[0].length; j++) {
+                        System.out.print(matrixDegree[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+                break;
+            }
+            case 7: {
+                matrixOne.transpose();
+                int[][] matrixTranspose = matrixOne.toArray();
+                for (int i = 0; i < matrixTranspose.length; i++) {
+                    for (int j = 0; j < matrixTranspose[0].length; j++) {
+                        System.out.print(matrixTranspose[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+                break;
+            }
+            case 8: {
+                matrixOne.multiply(matrixTwo);
+                int[][] result = matrixOne.toArray();
+                for (int i = 0; i < result.length; i++) {
+                    for (int j = 0; j < result[0].length; j++) {
+                        System.out.print(result[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+                break;
+            }
+            default:{
+                System.out.println("end");
+                break;
             }
         }
-    }
-
-    /**
-     * @param numberOfLine    - number Of Line in matrix;
-     * @param numberOfColumns - number Of Columns in matrix;
-     * @return - filled matrix with numbers;
-     */
-    public static int[][] matrix(int numberOfLine, int numberOfColumns) {
-        Scanner scanner = new Scanner(System.in);
-        int[][] matrix = new int[numberOfLine][numberOfColumns];
-        for (int i = 0; i < numberOfLine; i++) {
-            for (int j = 0; j < numberOfColumns; j++) {
-                System.out.println("Enter number");
-                matrix[i][j] = scanner.nextInt();
-            }
-        }
-        return matrix;
     }
 }
+

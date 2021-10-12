@@ -2,53 +2,121 @@ package com.company;
 
 public class Matrix {
 
-    private final int[][] matrixOne;
-    private final int[][] matrixTwo;
+    private int[][] array;
 
     /**
-     * @param matrixOne - the first matrix user;
-     * @param matrixTwo - the second matrix user;
+     * @param array - the first matrix user;
      */
-    public Matrix(int[][] matrixOne, int[][] matrixTwo) {
-        this.matrixOne = matrixOne;
-        this.matrixTwo = matrixTwo;
+    public Matrix(int[][] array) {
+        this.array = array;
     }
 
     /**
-     * @return the sum of two matrices.
+     * @param matrix - matrix which need addition with the first matrix (array).
      */
-    public int[][] calculatorMatrix() {
-        for (int i = 0; i < matrixOne.length; i++) {
-            for (int j = 0; j < matrixOne[0].length; j++) {
-                matrixOne[i][j] += matrixTwo[i][j];
+    public void add(Matrix matrix) {
+        int[][] ints = matrix.toArray();
+        for (int i = 0; i < ints.length; i++) {
+            for (int j = 0; j < ints[i].length; j++) {
+                array[i][j] += ints[i][j];
             }
         }
-        return matrixOne;
     }
 
     /**
-     * @param number - the number, whose need multiply on the matrix;
-     * @return - the multiplication of two matrices.
+     * @param matrix - the matrix which need multiply with the first matrix (array).
      */
-    public int[][] multiplication(int number) {
-        for (int i = 0; i < matrixTwo.length; i++) {
-            for (int j = 0; j < matrixTwo[0].length; j++) {
-                matrixTwo[i][j] *= number;
+    public void multiply(Matrix matrix) {
+        int[][] ints = matrix.toArray();
+        for (int i = 0; i < ints.length; i++) {
+            for (int j = 0; j < ints[i].length; j++) {
+                array[i][j] *= ints[i][j];
             }
         }
-        return matrixTwo;
     }
 
     /**
-     * @param matrix output on the screen;
+     * @param number - the number which multiply on each index in the array.
      */
-    public void consoleOutput(int[][] matrix) {
-        for (int[] matrixResult : matrix) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                System.out.print(" " + matrixResult[j] + " ");
+    public void myltiplyOnNumber(int number) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                array[i][j] *= number;
             }
-            System.out.println();
         }
+    }
+
+    public int findMaxNumber() {
+        int max = array[0][0];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j] > max) {
+                    max = array[i][j];
+                }
+            }
+        }
+        return max;
+    }
+
+    public int findMinNumber() {
+        int min = array[0][0];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j] < min) {
+                    min = array[i][j];
+                }
+            }
+        }
+        return min;
+    }
+
+    /**
+     * @param matrix - the matrix, which comparison the two matrix on the equal.
+     * @return true - the matrices equal, false - the matrices not equal.
+     */
+    public boolean isEqual(Matrix matrix) {
+        int[][] ints = matrix.toArray();
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j] != ints[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void transpose() {
+        int[][] ints = new int[array[0].length][array.length];
+        for (int i = 0; i < ints.length; i++) {
+            for (int j = 0; j < ints[i].length; j++) {
+                ints[i][j] = array[j][i];
+            }
+        }
+        this.array = ints;
+    }
+
+    /**
+     * @param degree - the degree which multiply whole the array.
+     */
+    public void erectToDegree(int degree) {
+        int[][] ints = new int[array.length][array[0].length];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                ints[i][j] = array[i][j];
+            }
+        }
+        for (int time = 1; time < degree; time++) {
+            for (int i = 0; i < array.length; i++) {
+                for (int j = 0; j < array[i].length; j++) {
+                    array[i][j] *= ints[i][j];
+                }
+            }
+        }
+    }
+
+    public int[][] toArray() {
+        return array;
     }
 }
 
