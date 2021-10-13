@@ -116,7 +116,13 @@ public class Matrix {
     }
 
     public int[][] toArray() {
-        return array;
+        int[][] result = new int[array.length][array[0].length];
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = array[i][j];
+            }
+        }
+        return result;
     }
 }
 

@@ -89,7 +89,7 @@ public class Main {
                 }
                 break;
             }
-            default:{
+            default: {
                 System.out.println("end");
                 break;
             }
